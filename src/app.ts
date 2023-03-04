@@ -21,6 +21,10 @@ class App {
                 
 
         var camera: ArcRotateCamera = new ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, Vector3.Zero(), scene);
+        // Limit how far the camera can zoom in and out
+        camera.lowerRadiusLimit = 3;
+        camera.upperRadiusLimit = 10;
+
         camera.attachControl(canvas, true);
 
 
@@ -42,8 +46,9 @@ class App {
 
         // When the button is clicked, change the color of the sphere
         button1.onPointerUpObservable.add(() => {
-            sphere.material = new StandardMaterial("red", scene);
-            sphere.material.diffuseColor = new Color3(1, 0, 0);
+            var material = new StandardMaterial("red", scene);
+            material.diffuseColor = new Color3(1, 0, 0);
+            sphere.material = material;
         });
 
 
